@@ -23,20 +23,9 @@ require("./DB/conn");
 const verify = require("./middleware/verify");
 
 // api routers
-
+const User = require("./routes/User");
 // routes setting
-
-
-
-//making public images 
-// app.use("/public/images", express.static(__dirname + '/public'));
-
-// for production use
-// app.use(express.static("client/build"));
-// const path = require("path");
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
-// })
+app.use('/api/user', User);
 
 
 app.listen(port, () => {
