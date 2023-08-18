@@ -23,6 +23,7 @@ async function isUserExists(email) {
 router.post("/create", async (req, res) => {
     const { name, password } = req.body;
     try {
+        console.log("hello")
         if (await isUserExists(name)) {
             return res.status(409).json("user already exits !!");
         }
@@ -31,7 +32,6 @@ router.post("/create", async (req, res) => {
             password: password,
         });
         await newUser.save();
-
         res.status(201).json(newUser);
     }
     catch (err) {
@@ -41,7 +41,7 @@ router.post("/create", async (req, res) => {
 })
 router.post("/in", async (req, res) => {
     const { name, password } = req.body;
-    const user = await User.findOne({ name: username });
+    const user = await User.findOne({ name: name });
     if (user) {
         const validPassword = await bcrypt.compare(password, user.password);
         if (validPassword) {
@@ -60,6 +60,25 @@ router.post("/in", async (req, res) => {
         res.status(401).json("invalid username");
     }
 })
+
+router.get('/all', async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching users', error: error.message });
+    }
+});
+
+
+router.delete('/all', async (req, res) => {
+    try {
+        const deletedUser = await User.deleteMany({});
+        res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting user', error: error.message });
+    }
+});
 
 
 module.exports = router;

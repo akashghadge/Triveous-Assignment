@@ -23,17 +23,6 @@ const handleErrors = (err) => {
     }
     return errors;
 }
-const handleErrorsPost = (err) => {
-    console.log(err.message, err.code);
-    let errors = { post: '' };
-    if (err.message === 'photo is req') {
-        errors.post = 'photo is req';
-    }
-    if (err.message === 'text is req') {
-        errors.post = 'text is req';
-    }
-    return errors;
-}
 module.exports = {
-    handleErrors, handleErrorsPost
+    handleErrors
 };
