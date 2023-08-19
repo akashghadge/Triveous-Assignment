@@ -1,6 +1,5 @@
 // error handler class
 const handleErrors = (err) => {
-    console.log(err.message, err.code);
     let errors = { email: '', password: '' };
     // incorrect email->login
     if (err.message === 'incorrect Email') {

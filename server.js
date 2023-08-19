@@ -27,14 +27,16 @@ const User = require("./routes/User");
 const Category = require("./routes/Category")
 const Product = require("./routes/Product")
 const Cart = require("./routes/Cart")
-// const Order = require("./routes/Order")
+const Order = require("./routes/Order")
+const UserOrder = require("./routes/UserOrder");
 
 // routes setting
 app.use('/api/user', User);
 app.use('/api/category', Category);
 app.use('/api/product', Product);
-app.use('/api/Cart', verify, Cart);
-// app.use('/api/Order', Order);
+app.use('/api/cart', verify, Cart);
+app.use('/api/order', Order);
+app.use('/api/my-order', verify, UserOrder);
 
 
 app.listen(port, () => {

@@ -23,7 +23,6 @@ async function isUserExists(email) {
 router.post("/create", async (req, res) => {
     const { name, password } = req.body;
     try {
-        console.log("hello")
         if (await isUserExists(name)) {
             return res.status(409).json("user already exits !!");
         }
@@ -50,7 +49,7 @@ router.post("/in", async (req, res) => {
                 id: user._id
             }
 
-            let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 });
+            let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 24 });
             res.status(200).json({ "jwt": accessToken })
         }
         else {

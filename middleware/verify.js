@@ -9,7 +9,6 @@ const verify = (req, res, next) => {
         //use the jwt.verify method to verify the access token
         //throws an error if the token has expired or has a invalid signature
         let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-        console.log(payload);
         res.locals.name = payload.name;
         res.locals.id = payload.id;
         next()
