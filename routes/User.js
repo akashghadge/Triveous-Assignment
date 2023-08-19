@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 //models and middlewares  
 const User = require("../models/User");
 
-const { handleErrors } = require("../helpers/handleErrors");
 
 async function isUserExists(email) {
     try {
@@ -34,8 +33,7 @@ router.post("/create", async (req, res) => {
         res.status(201).json(newUser);
     }
     catch (err) {
-        let error = handleErrors(err);
-        res.status(404).json(error);
+        res.status(404).json(err);
     }
 })
 router.post("/in", async (req, res) => {
