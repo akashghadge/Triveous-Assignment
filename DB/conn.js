@@ -1,7 +1,10 @@
 // database connections
 const mongoose = require("mongoose");
-// const uri = process.env.MONGO_URI;
-const uri = "mongodb://127.0.0.1/triveous";
+// dev
+// const uri = "mongodb://127.0.0.1/triveous";
+
+// prod
+const uri = "mongodb+srv://tempuser:tempuser@cluster0.eaaq4.mongodb.net/triveous?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true

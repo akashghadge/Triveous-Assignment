@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dummy-data":"node insertDummyData.js",
     "start": "node server.js"
-  },
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
