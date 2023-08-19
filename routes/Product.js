@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require('../models/Product'); // Import your Product model
 
 
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const products = await Product.find();
         res.json(products);
@@ -34,7 +34,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.delete('/all', async (req, res) => {
+router.delete('/delete/all', async (req, res) => {
     try {
         await Product.deleteMany({});
         res.json({ message: 'All products deleted successfully' });
@@ -43,7 +43,7 @@ router.delete('/all', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
         if (!deletedProduct) {

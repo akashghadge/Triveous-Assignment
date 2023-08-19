@@ -3,7 +3,7 @@ const router = express.Router();
 const Order = require('../models/Order');
 
 // GET all orders
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const orders = await Order.find();
         res.json(orders);

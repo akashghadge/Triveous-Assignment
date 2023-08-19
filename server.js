@@ -33,10 +33,10 @@ const UserOrder = require("./routes/UserOrder");
 // routes setting
 app.use('/api/user', User);
 app.use('/api/category', Category);
-app.use('/api/product', Product);
+app.use('/api/products', Product);
+app.use('/api/orders', Order);
 app.use('/api/cart', verify, Cart);
-app.use('/api/order', Order);
-app.use('/api/my-order', verify, UserOrder);
+app.use('/api/my-orders', verify, UserOrder);
 
 
 app.listen(port, () => {

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Category = require('../models/Category'); // Import your Category model
+const Category = require('../models/Category');
 
 // GET all categories
-router.get('/categories', async (req, res) => {
+router.get('/all', async (req, res) => {
     try {
         const categories = await Category.find();
         res.json(categories);

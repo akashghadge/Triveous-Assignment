@@ -38,7 +38,7 @@ router.post("/add", async (req, res) => {
 })
 
 
-router.get("/history", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const userId = res.locals.id;
 
@@ -56,7 +56,7 @@ router.get("/history", async (req, res) => {
     }
 });
 
-router.get('/history/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const userId = res.locals.id;
         const orderId = req.params.id;

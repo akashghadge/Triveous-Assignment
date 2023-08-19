@@ -9,13 +9,13 @@ const dummyCategories = [
     { categoryName: 'Beauty and Health', categoryProducts: [] }
 ];
 
-// Category.insertMany(dummyCategories)
-//     .then(() => {
-//         console.log('Dummy categories inserted successfully');
-//     })
-//     .catch((error) => {
-//         console.error('Error inserting dummy categories:', error);
-//     });
+Category.insertMany(dummyCategories)
+    .then(() => {
+        console.log('Dummy categories inserted successfully');
+    })
+    .catch((error) => {
+        console.error('Error inserting dummy categories:', error);
+    });
 
 
 const categories = [

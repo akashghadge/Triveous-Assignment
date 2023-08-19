@@ -2,7 +2,17 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User'); // Import your User model
 
-
+router.get('/all', async (req, res) => {
+    try {
+        const user = await User.findById(res.locals.id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user.Cart);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching cart items', error: error.message });
+    }
+});
 
 router.post('/add', async (req, res) => {
     try {
@@ -23,7 +33,7 @@ router.post('/add', async (req, res) => {
 });
 
 // DELETE item from user's cart by product ID
-router.delete('/:ProductID', async (req, res) => {
+router.delete('/delete/:ProductID', async (req, res) => {
     try {
         const user = await User.findById(res.locals.id);
         if (!user) {
@@ -40,7 +50,7 @@ router.delete('/:ProductID', async (req, res) => {
 });
 
 // PUT update quantity of an item in user's cart by product ID
-router.put('/:ProductID', async (req, res) => {
+router.put('/update/:ProductID', async (req, res) => {
     try {
         const { quantity } = req.body;
         const user = await User.findById(res.locals.id);
@@ -61,18 +71,5 @@ router.put('/:ProductID', async (req, res) => {
         res.status(500).json({ message: 'Error updating item in cart', error: error.message });
     }
 });
-
-router.get('/all', async (req, res) => {
-    try {
-        const user = await User.findById(res.locals.id);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.json(user.Cart);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching cart items', error: error.message });
-    }
-});
-
 
 module.exports = router;
