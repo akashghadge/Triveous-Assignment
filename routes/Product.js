@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: 'Error fetching products', error: error.message });
     }
 });
-
 router.get('/:id', async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -21,6 +20,21 @@ router.get('/:id', async (req, res) => {
         res.json(product);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching product', error: error.message });
+    }
+});
+
+router.get('/category/:categoryID', async (req, res) => {
+    try {
+        const categoryID = req.params.categoryID;
+        const products = await Product.find({ categoryBelongs: categoryID });
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'No products found for the given category ID.' });
+        }
+
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
