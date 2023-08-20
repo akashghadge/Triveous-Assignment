@@ -1,6 +1,6 @@
 # Triveous Assignment
 
-Short project description.
+The assignment I completed is the "BACKEND ASSIGNMENT: 'Ecommerce API with Node.js'" and used MongoDB as Database. 
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ Short project description.
 
 ## Overview
 
-Provide a brief introduction to your project, its purpose, and key features.
+
 
 ## Features
 
@@ -41,6 +41,29 @@ npm run dummy-data
 ```bash
 num start
 ```
+
+### Project Usages
+
+1. Install Dependencies: Run npm install to install dependencies.
+
+2. Add Dummy Data: Use npm run dummy-data to populate products and categories.
+
+3. Start the Server: Begin the server with npm start.
+
+4. Create User: POST /api/user/create with name and password to create a user.
+
+5. User Login: POST /api/user/in with name and password to obtain a JWT token.
+
+6. Use JWT Token: Include the token in the Authorization header for requests: Authorization: Bearer your_generated_token.
+
+7. Product API: Manage products using /api/products/add, /api/products/delete/${id}, /api/products, /api/products/category/${categoryID}.
+
+8. Cart API: Manage cart using /api/cart/add, /api/cart/all, /api/cart/delete/${ProductID}, /api/cart/update/${ProductID}.
+
+9. User Order API: Manage orders using /api/my-orders/add, /api/my-orders, /api/my-orders/${id}.
+
+10. Reset API: Optionally reset data using /api/reset.
+
 
 
 ## API Documentation
