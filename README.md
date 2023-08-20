@@ -43,9 +43,7 @@ num start
 ```
 
 
-Sure, here's the API documentation for your endpoints in the format you provided:
-
-## API Reference
+## API Documentation
 
 ### Cart Endpoints
 
