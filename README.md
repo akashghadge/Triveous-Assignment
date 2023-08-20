@@ -55,9 +55,10 @@ GET /api/cart/all
 
 Get all items in the user's cart.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
+| Body        | Type     | Description                          |
+| :---------- | :------- | :----------------------------------- |
+| `Token` | `string` | **Required**. User's JWT token     |
+
 
 #### Add Item to Cart
 
@@ -67,14 +68,12 @@ POST /api/cart/add
 
 Add a product to the user's cart.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 | Body        | Type     | Description                          |
 | :---------- | :------- | :----------------------------------- |
 | `ProductID` | `string` | **Required**. ID of the product     |
 | `quantity`  | `number` | **Required**. Quantity of the product |
+| `Token` | `string` | **Required**. User's JWT token     |
+
 
 #### Delete Item from Cart
 
@@ -84,9 +83,9 @@ DELETE /api/cart/delete/${ProductID}
 
 Delete a product from the user's cart.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
+| Body        | Type     | Description                          |
+| :---------- | :------- | :----------------------------------- |
+| `Token` | `string` | **Required**. User's JWT token     |
 
 | Parameter   | Type     | Description                    |
 | :---------- | :------- | :----------------------------- |
@@ -100,17 +99,13 @@ PUT /api/cart/update/${ProductID}
 
 Update the quantity of a product in the user's cart.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 | Parameter   | Type     | Description                    |
 | :---------- | :------- | :----------------------------- |
 | `ProductID` | `string` | **Required**. ID of the product |
 
 | Body        | Type     | Description                   |
 | :---------- | :------- | :---------------------------- |
-| `quantity`  | `number` | **Required**. New quantity    |
+| `Token` | `string` | **Required**. User's JWT token     |
 
 ### Category Endpoints
 
@@ -164,9 +159,6 @@ POST /api/products/add
 
 Add a new product.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
 
 | Body        | Type     | Description                                      |
 | :---------- | :------- | :----------------------------------------------- |
@@ -177,6 +169,7 @@ Add a new product.
 | `description` | `string` | **Required**. Product description               |
 | `availability` | `boolean` | **Required**. Product availability             |
 | `quantity`  | `number` | **Required**. Product quantity                  |
+| `Token` | `string` | **Required**. User's JWT token     |
 
 #### Delete All Products
 
@@ -186,10 +179,6 @@ DELETE /api/products/delete/all
 
 Delete all products.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 #### Delete Product by ID
 
 ```http
@@ -197,10 +186,6 @@ DELETE /api/products/delete/${id}
 ```
 
 Delete a product by its ID.
-
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
 
 | Parameter   | Type     | Description            |
 | :---------- | :------- | :--------------------- |
@@ -242,10 +227,6 @@ GET /api/user/all
 
 Get a list of all users.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 #### Delete All Users
 
 ```http
@@ -253,10 +234,6 @@ DELETE /api/user/all
 ```
 
 Delete all users.
-
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
 
 ### User Order Endpoints
 
@@ -268,13 +245,10 @@ POST /api/my-orders/add
 
 Add an order to the user's order history.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 | Body        | Type     | Description            |
 | :---------- | :------- | :--------------------- |
 | `cartItemId` | `string` | **Required**. Cart item ID |
+| `Token` | `string` | **Required**. User's JWT token     |
 
 #### Get Order History
 
@@ -284,9 +258,9 @@ GET /api/my-orders
 
 Get the user's order history.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
+| Body        | Type     | Description                          |
+| :---------- | :------- | :----------------------------------- |
+| `Token` | `string` | **Required**. User's JWT token     |
 
 #### Get Order by ID
 
@@ -296,10 +270,7 @@ GET /api/my-orders/${id}
 
 Get order details by its ID.
 
-| Header      | Description             |
-| :---------- | :---------------------- |
-| `Authorization` | **Required**. User's JWT token |
-
 | Parameter   | Type     | Description            |
 | :---------- | :------- | :--------------------- |
 | `id`        | `string` | **Required**. Order ID |
+| `Token` | `string` | **Required**. User's JWT token     |
