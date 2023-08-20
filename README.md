@@ -16,51 +16,13 @@ Provide a brief introduction to your project, its purpose, and key features.
 ## Features
 
 1. **Category Listing**:
-   - Retrieve a list of categories from the database.
-   - Display category names and IDs to users.
-   - Endpoint: `/api/category/all`
-
 2. **Product Listing**:
-   - Fetch products based on a specific category ID.
-   - Return essential product details: title, price, description, and availability.
-   - Endpoint: `/api/products/category/:categoryID`
-
 3. **Product Details**:
-   - Fetch detailed information about a specific product by its ID.
-   - Provide information such as name, title, price, description, and availability.
-   - Endpoint: `/api/products/:id`
-
 4. **Cart Management**:
-   - Allow users to add products to their cart.
-   - Provide endpoints to view the cart, update product quantities, and remove items.
-   - Endpoints:
-     - Add to cart: `POST /api/cart/add`
-     - View cart: `GET /api/cart/all`
-     - Update quantity: `PUT /api/cart/update/<product_id>`
-     - Remove item: `DELETE /api/cart/delete/<product_id>`
-
 5. **Order Placement**:
-   - Enable users to place orders with products from their cart.
-   - Allow authenticated users
-   - Create an order record, associating it with the user and products in their cart.
-   - Endpoint: `POST /api/my-orders/add`
-
 6. **Order History**:
-   - Allow authenticated users to view their order history.
-   - Retrieve a list of orders associated with the user.
-   - Endpoint: `GET /api/my-orders/`
-
 7. **Order Details**:
-   - Fetch detailed information about a specific order by its ID.
-   - Provide order information, products, quantities, and date of placement.
-   - Endpoint: `GET /api/my-orders/<order_id>`
-
 8. **User Registration and Login**:
-   - Implement API endpoints for user registration and authentication.
-   - Allow users to create accounts and log in securely.
-   - Endpoints:
-     - Register: `POST /api/user/create`
-     - Login: `POST /api/user/in`
 
 ## Getting Started
 
@@ -79,3 +41,267 @@ npm run dummy-data
 ```bash
 num start
 ```
+
+
+Sure, here's the API documentation for your endpoints in the format you provided:
+
+## API Reference
+
+### Cart Endpoints
+
+#### Get User's Cart
+
+```http
+GET /api/cart/all
+```
+
+Get all items in the user's cart.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+#### Add Item to Cart
+
+```http
+POST /api/cart/add
+```
+
+Add a product to the user's cart.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Body        | Type     | Description                          |
+| :---------- | :------- | :----------------------------------- |
+| `ProductID` | `string` | **Required**. ID of the product     |
+| `quantity`  | `number` | **Required**. Quantity of the product |
+
+#### Delete Item from Cart
+
+```http
+DELETE /api/cart/delete/${ProductID}
+```
+
+Delete a product from the user's cart.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Parameter   | Type     | Description                    |
+| :---------- | :------- | :----------------------------- |
+| `ProductID` | `string` | **Required**. ID of the product |
+
+#### Update Item in Cart
+
+```http
+PUT /api/cart/update/${ProductID}
+```
+
+Update the quantity of a product in the user's cart.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Parameter   | Type     | Description                    |
+| :---------- | :------- | :----------------------------- |
+| `ProductID` | `string` | **Required**. ID of the product |
+
+| Body        | Type     | Description                   |
+| :---------- | :------- | :---------------------------- |
+| `quantity`  | `number` | **Required**. New quantity    |
+
+### Category Endpoints
+
+#### Get All Categories
+
+```http
+GET /api/category/all
+```
+
+Get a list of all product categories.
+
+### Product Endpoints
+
+#### Get All Products
+
+```http
+GET /api/products
+```
+
+Get a list of all products.
+
+#### Get Product by ID
+
+```http
+GET /api/products/${id}
+```
+
+Get product details by its ID.
+
+| Parameter | Type     | Description            |
+| :-------- | :------- | :--------------------- |
+| `id`      | `string` | **Required**. Product ID |
+
+#### Get Products by Category
+
+```http
+GET /api/products/category/${categoryID}
+```
+
+Get products belonging to a specific category.
+
+| Parameter     | Type     | Description                |
+| :------------ | :------- | :------------------------- |
+| `categoryID`  | `string` | **Required**. Category ID |
+
+#### Add Product
+
+```http
+POST /api/products/add
+```
+
+Add a new product.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Body        | Type     | Description                                      |
+| :---------- | :------- | :----------------------------------------------- |
+| `name`      | `string` | **Required**. Product name                      |
+| `categoryBelongs` | `string` | **Required**. ID of the category the product belongs to |
+| `title`     | `string` | **Required**. Product title                     |
+| `price`     | `number` | **Required**. Product price                     |
+| `description` | `string` | **Required**. Product description               |
+| `availability` | `boolean` | **Required**. Product availability             |
+| `quantity`  | `number` | **Required**. Product quantity                  |
+
+#### Delete All Products
+
+```http
+DELETE /api/products/delete/all
+```
+
+Delete all products.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+#### Delete Product by ID
+
+```http
+DELETE /api/products/delete/${id}
+```
+
+Delete a product by its ID.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Parameter   | Type     | Description            |
+| :---------- | :------- | :--------------------- |
+| `id`        | `string` | **Required**. Product ID |
+
+### User Endpoints
+
+#### Create User
+
+```http
+POST /api/user/create
+```
+
+Create a new user.
+
+| Body        | Type     | Description            |
+| :---------- | :------- | :--------------------- |
+| `name`      | `string` | **Required**. User name |
+| `password`  | `string` | **Required**. User password |
+
+#### User Login
+
+```http
+POST /api/user/in
+```
+
+User login.
+
+| Body        | Type     | Description            |
+| :---------- | :------- | :--------------------- |
+| `name`      | `string` | **Required**. User name |
+| `password`  | `string` | **Required**. User password |
+
+#### Get All Users
+
+```http
+GET /api/user/all
+```
+
+Get a list of all users.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+#### Delete All Users
+
+```http
+DELETE /api/user/all
+```
+
+Delete all users.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+### User Order Endpoints
+
+#### Add Order
+
+```http
+POST /api/my-orders/add
+```
+
+Add an order to the user's order history.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Body        | Type     | Description            |
+| :---------- | :------- | :--------------------- |
+| `cartItemId` | `string` | **Required**. Cart item ID |
+
+#### Get Order History
+
+```http
+GET /api/my-orders
+```
+
+Get the user's order history.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+#### Get Order by ID
+
+```http
+GET /api/my-orders/${id}
+```
+
+Get order details by its ID.
+
+| Header      | Description             |
+| :---------- | :---------------------- |
+| `Authorization` | **Required**. User's JWT token |
+
+| Parameter   | Type     | Description            |
+| :---------- | :------- | :--------------------- |
+| `id`        | `string` | **Required**. Order ID |
